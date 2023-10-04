@@ -1,6 +1,7 @@
-import { Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import { styles } from './styles';
 import Task from '../Task';
+import Trash from '../../assets/images/trash.svg'
 
 interface Task {
     id: number,
@@ -67,7 +68,27 @@ export default function List(List: ListProps) {
                 </View>
             </View>
 
-            {taskList.map(task => {
+            <FlatList 
+                data={taskList}
+                keyExtractor ={item => String(item.id)}
+                renderItem={({ item }) => 
+                    <Task 
+                        key={item.id}
+                        id={item.id}
+                        content={item.content}
+                        isChecked={item.isChecked}
+                        onChangeStatus={id => changeTaskStatus(id)}
+                        onDeleteTask={id => handleDeleteTask(id)}
+                    />
+                }
+                showsVerticalScrollIndicator={false}
+                ListEmptyComponent={() => (
+                    <Text>teste</Text>
+                )}
+            />
+            
+
+            {/* {taskList.map(task => {
                 return (
                     <Task 
                         key={task.id}
@@ -78,7 +99,7 @@ export default function List(List: ListProps) {
                         onDeleteTask={id => handleDeleteTask(id)}
                     />
                 )
-            })}
+            })} */}
 
         </>
     )

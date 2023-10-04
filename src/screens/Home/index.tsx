@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Image, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from './styles';
 
-import { PlusCircle } from 'phosphor-react-native';
+import AddIcon from '../../../assets/images/AddIcon.svg'
 import List from "../../../components/List";
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
     const Tasks = [
         {
             id: 1695576952000,
-            content: "Lavar as louças",
+            content: "Lavar a louça",
             isChecked: false
         },
         {
@@ -103,8 +103,8 @@ export default function Home() {
                         onPress={() => addNewTask()}
                     >
 
-                        <PlusCircle size={16} color={'#F2F2F2'}/>
-                        
+                        <AddIcon />
+
                     </TouchableOpacity>
 
                 </View>

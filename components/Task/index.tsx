@@ -2,6 +2,7 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { useState } from 'react';
+import Trash from '../../assets/images/trash.svg'
 
 interface TaskProps {
     id: number,
@@ -47,13 +48,10 @@ export default function Task(Task: TaskProps) {
                 </View>
                 <View style={styles.trashContainer}>
                     <TouchableOpacity
-                        // style={styles.deleteButton}
+                        style={styles.deleteButton}
                         onPress={handleDeleteTask}
                         >
-                        <Image
-                            style={styles.trash}
-                            source={require('../../assets/images/trash.png')}
-                        />   
+                        <Trash style={styles.trash}/>
                     </TouchableOpacity> 
                 </View>
             </View>
