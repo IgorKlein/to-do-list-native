@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Image, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, Image, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from './styles';
 
-import AddIcon from '../../../assets/images/AddIcon.svg'
+import AddIcon from '../../../assets/images/addIcon.svg'
+import MainLogo from '../../../assets/images/mainLogo.svg'
 import List from "../../../components/List";
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
         },
         {
             id: 1695576951000,
-            content: "Tomar café",
+            content: "Tomar café da manhã",
             isChecked: false
         },
         {
@@ -43,12 +44,17 @@ export default function Home() {
             isChecked: false
         }
 
-        const refreshedTaskList = [...taskList, taskCreated]
+        if (taskCreated.content) {
+            const refreshedTaskList = [...taskList, taskCreated]
 
-        console.log(refreshedTaskList)
+            console.log(refreshedTaskList)
 
-        setTaskList(refreshedTaskList)
-        setInputContent('')
+            setTaskList(refreshedTaskList)
+            setInputContent('') 
+        } else {
+            Alert.alert("Você não pode inserir uma tarefa vazia.")
+        }
+        
     }
 
     function deleteTask(id: number) {
@@ -73,10 +79,7 @@ export default function Home() {
         <>
             <View style={styles.header}>
 
-                <Image 
-                    style={styles.logo}
-                    source={require('../../../assets/images/mainLogo.png')} 
-                    />
+                <MainLogo style={styles.logo}/>
 
             </View>
             <View style={styles.body}> 

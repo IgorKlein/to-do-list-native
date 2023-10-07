@@ -1,7 +1,7 @@
 import { FlatList, Text, View } from 'react-native';
 import { styles } from './styles';
 import Task from '../Task';
-import Trash from '../../assets/images/trash.svg'
+import Clipboard from '../../assets/images/clipboard.svg'
 
 interface Task {
     id: number,
@@ -57,7 +57,7 @@ export default function List(List: ListProps) {
                     <Text 
                         style={[styles.panelText,{
                             color: '#8284FA'
-                        }]}>Concluídas</Text>
+                        }]}>Concluidas</Text>
 
                     <View style={styles.panelCounter}>
                         <Text style={styles.panelCounterText}>
@@ -69,6 +69,7 @@ export default function List(List: ListProps) {
             </View>
 
             <FlatList 
+                style={{width: '100%'}}
                 data={taskList}
                 keyExtractor ={item => String(item.id)}
                 renderItem={({ item }) => 
@@ -83,24 +84,14 @@ export default function List(List: ListProps) {
                 }
                 showsVerticalScrollIndicator={false}
                 ListEmptyComponent={() => (
-                    <Text>teste</Text>
+                    <View style={styles.emptyScreen}>
+                        <Clipboard style={styles.clipboard}/>
+                        <Text style={styles.emptyScreenTitle}>Você não tem tarefas cadastradas</Text>
+                        <Text style={styles.emptyScreenSubtitle}>Crie tarefas e organize seus itens a fazer</Text>
+                    </View>
+                    
                 )}
             />
-            
-
-            {/* {taskList.map(task => {
-                return (
-                    <Task 
-                        key={task.id}
-                        id={task.id}
-                        content={task.content}
-                        isChecked={task.isChecked}
-                        onChangeStatus={id => changeTaskStatus(id)}
-                        onDeleteTask={id => handleDeleteTask(id)}
-                    />
-                )
-            })} */}
-
         </>
     )
 }
